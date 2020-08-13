@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Counter.css';
 
 function Counter({ step = 2 }) {
   const [count, setCount] = useState(1);
@@ -11,12 +12,12 @@ function Counter({ step = 2 }) {
   }, [count]);
 
   return (
-    <div>
+    <div className='CounterCss'>
       <button onClick={() => setCount(count + step)}>Add +{step}</button>
       <p>
         Number is <strong>{count}</strong>
       </p>
-  <button onClick={() => setCount(count - step)}>Reduced -{step}</button>
+      <button onClick={() => setCount(count - step)}>Reduced -{step}</button>
     </div>
   );
 }
