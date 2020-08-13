@@ -1,25 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function Counter() {
-  const [count, addOne] = useState(1);
-  const qtyCurrent = 5;
-  const [isHappy, setIsHappy] = useState(true);
-  const toggleIsHappy = () => setIsHappy(!isHappy);
-  console.log(isHappy);
+function Counter({ step = 2 }) {
+  const [count, setCount] = useState(1);
+  const minQty = 1;
+  const maxQty = 5;
+
+  useEffect(() => {
+    const counter = count > maxQty ? maxQty : count < minQty ? minQty : count;
+    setCount(counter);
+  }, [count]);
 
   return (
-    <>
-      <div>{count}</div>
-      <button
-        onClick={() => addOne(count + 1 > qtyCurrent ? qtyCurrent : count + 1)}
-      >
-        click +1
-      </button>
-      <button onClick={() => addOne(count - 1 < 0 ? 0 : count - 1)}>
-        click -1
-      </button>
-      <h3 onClick={toggleIsHappy}>Icon {isHappy ? ':)' : ':('}</h3>
-    </>
+    <div>
+      <button onClick={() => setCount(count + step)}>Add +{step}</button>
+      <p>
+        Number is <strong>{count}</strong>
+      </p>
+  <button onClick={() => setCount(count - step)}>Reduced -{step}</button>
+    </div>
   );
 }
 
