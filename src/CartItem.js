@@ -1,11 +1,10 @@
 import React from 'react';
 
-function CartItem({ productItem }) {
+function CartItem({ name, price = 99, qty }) {
   return (
     <div>
       <li>
-        Name is ::::: {productItem.name} -- price----: {productItem.price} and
-        qty---- {productItem.qty}
+        Name is ::::: {name} -- price----: {price} and qty---- {qty}
       </li>
     </div>
   );
