@@ -1,13 +1,29 @@
 import React from 'react';
-import Counter from './Counter';
 
 function CartItem({ id, name, price = 99, qty, updateQty }) {
+  console.log(qty);
+
   return (
     <div>
       <li>
         Name :: {name} --price-:: {price} <br />
-        qty--:: <Counter step={1} max={qty} min={1} />- Total{' '}
-        {(qty * price).toFixed(2)}
+        qty--::
+        <div className='CounterCss'>
+          <button
+            onClick={() => updateQty(id, qty - 1)}
+            disabled={qty <= 1 ? true : false}
+          >
+            -1
+          </button>
+          <span>
+            [ <strong>{qty}</strong> ]
+          </span>
+          {/* new issue TODO: need optimize maxQty disable addButton */}
+          <button onClick={() => updateQty(id, qty + 1)} disabled={false}>
+            +1
+          </button>
+        </div>
+        - Total {(qty * price).toFixed(2)}
       </li>
     </div>
   );

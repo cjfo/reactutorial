@@ -5,6 +5,7 @@ function Cart({ productItems }) {
   //console.log(productItems);
 
   const [products, setProducts] = useState(productItems);
+
   // TODO: Update Qty
   const updateQty = (id, newQty) => {
     const newItem = products.map((product) => {
@@ -16,7 +17,7 @@ function Cart({ productItems }) {
     setProducts(newItem);
   };
 
-  const grandTotal = productItems.reduce(
+  const grandTotal = products.reduce(
     (total, value) => total + value.qty * value.price,
     0
   );
@@ -25,7 +26,9 @@ function Cart({ productItems }) {
     <div>
       <h2>this is Cart</h2>
       <ul>
-        {productItems.map((i) => (
+        {products.map((i) => (
+          // each item will render default 1
+          // only click equal qty in row
           <CartItem key={i.id} {...i} updateQty={updateQty} />
         ))}
       </ul>
