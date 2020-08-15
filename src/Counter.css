@@ -1,5 +1,10 @@
 .CounterCss {
-  display: flex;
+  display: inline-block;
+}
+.CounterCss button {
+  height: 30px;
+  padding: 5px;
+  margin: 0 5px;
 }
 strong {
   color: red;

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './Counter.css';
 
-function Counter({ step = 2 }) {
+function Counter({ step = 2, max = 8, min = 1 }) {
   const [count, setCount] = useState(1);
-  const minQty = 1;
-  const maxQty = 5;
+  const minQty = min;
+  const maxQty = max;
 
   useEffect(() => {
     const counter = count > maxQty ? maxQty : count < minQty ? minQty : count;
@@ -13,11 +13,21 @@ function Counter({ step = 2 }) {
 
   return (
     <div className='CounterCss'>
-      <button onClick={() => setCount(count + step)}>Add +{step}</button>
-      <p>
-        Number is <strong>{count}</strong>
-      </p>
-      <button onClick={() => setCount(count - step)}>Reduced -{step}</button>
+      <button
+        onClick={() => setCount(count - step)}
+        disabled={count === min ? true : false}
+      >
+        -{step}
+      </button>
+      <span>
+        [ <strong>{count}</strong> ]
+      </span>
+      <button
+        onClick={() => setCount(count + step)}
+        disabled={count === max ? true : false}
+      >
+        +{step}
+      </button>
     </div>
   );
 }
